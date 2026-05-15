@@ -1,0 +1,72 @@
+# Radio map prediction and XAI pipeline configuration
+
+# Data settings
+data:
+  root_dir: "./data"
+  gain_method: "DPM"          # DPM, IRT2, IRT4
+  img_size: 256
+  train_ratio: 0.7
+  val_ratio: 0.15
+  test_ratio: 0.15
+  num_workers: 4
+  pin_memory: true
+
+# Model settings
+model:
+  inp_channels: 2              # building_map + antenna_heatmap
+  out_channels: 1
+  dim: 48
+  num_blocks: [4, 6, 6, 8]
+  num_refinement_blocks: 4
+  heads: [1, 2, 4, 8]
+  ffn_expansion_factor: 2.66
+  bias: false
+  LayerNorm_type: "WithBias"
+
+# Training settings
+training:
+  batch_size: 8                 # 4 GPUs x 2 per GPU
+  epochs: 50
+  lr: 0.0002                    # scaled up for larger effective batch
+  weight_decay: 0.0001
+  scheduler: "CosineAnnealingLR"
+  T_max: 50
+  eta_min: 0.0000001
+  grad_clip: 0.01
+  grad_accum_steps: 4           # effective batch = 8 * 4 = 32
+  seed: 42
+  resume: null
+
+# Loss settings
+loss:
+  primary: "l1"
+
+# Output settings
+output:
+  checkpoint_dir: "./outputs/checkpoints"
+  log_dir: "./outputs/logs"
+  prediction_dir: "./outputs/predictions"
+  explanation_dir: "./outputs/explanations"
+  figure_dir: "./outputs/figures"
+
+# Explainability settings
+explainability:
+  methods:
+    - "integrated_gradients"
+    - "grad_cam"
+    - "occlusion_sensitivity"
+  num_samples: 50
+  ig_steps: 50
+  occlusion_stride: 8
+  occlusion_window: 16
+
+# Physical prior settings
+priors:
+  los_bandwidth: 3
+  directional_sectors: 8
+
+# Metrics settings
+metrics:
+  faithfulness_top_k: [1, 5, 10, 20, 30]
+  stability_noise_std: 0.01
+  stability_num_samples: 10

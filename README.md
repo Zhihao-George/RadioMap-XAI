@@ -99,18 +99,6 @@ python scripts/visualize_dataset.py
 - The repository keeps output paths relative so results can be reproduced locally under `outputs/`.
 - If the dataset path is missing, the loader raises a clear error describing the expected directory layout.
 
-## Citation
-
-If you use this code in academic work, please cite the paper:
-
-```bibtex
-@article{zhihao2025beyond,
-  title={Beyond Accuracy: An Explainable Radio Map Prediction Framework via Physical Alignment and Attribution-Based Diagnostics},
-  author={Zhihao, George and others},
-  year={2025}
-}
-```
-
 ## License
 
 Released under the MIT License.

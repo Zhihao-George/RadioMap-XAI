@@ -1,6 +1,6 @@
-# Radio Map XAI
+# Beyond Accuracy: An Explainable Radio Map Prediction Framework via Physical Alignment and Attribution-Based Diagnostics
 
-A PyTorch research codebase for explainable radio map prediction. The project combines a Restormer-based predictor with post-hoc explanation methods, physics-inspired priors, and evaluation utilities for studying whether model behavior aligns with wireless propagation structure.
+This repository contains the official PyTorch implementation of the paper **"Beyond Accuracy: An Explainable Radio Map Prediction Framework via Physical Alignment and Attribution-Based Diagnostics"**. The project combines a Restormer-based predictor with post-hoc explanation methods, physics-inspired priors, and evaluation utilities for studying whether model behavior aligns with wireless propagation structure.
 
 ![Framework](assets/archi.png)
 
@@ -101,7 +101,15 @@ python scripts/visualize_dataset.py
 
 ## Citation
 
-If you use this repository in academic work, please cite the associated paper or reference this codebase in your methodology section.
+If you use this code in academic work, please cite the paper:
+
+```bibtex
+@article{zhihao2025beyond,
+  title={Beyond Accuracy: An Explainable Radio Map Prediction Framework via Physical Alignment and Attribution-Based Diagnostics},
+  author={Zhihao, George and others},
+  year={2025}
+}
+```
 
 ## License
 
